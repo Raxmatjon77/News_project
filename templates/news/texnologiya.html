@@ -1,0 +1,25 @@
+{% extends 'news/base.html'%}
+{% load static %}
+{% block title %} texnologik xabarlar{% endblock title %}
+
+{% block content%}
+{% for news in texno_yangiliklar%}
+<div class="card " >
+    <div class="row mb-3 " style="margin-bottom: 10px;">
+      <div class="col-md-2">
+        <a href=" {{news.get_absolute_url}}">
+        <img src="{{news.image.url}}" class="img-fluid rounded-start" alt="..." style="height: 100px; width: 100%;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{news.title}}</h5>
+          <p class="card-text"> {{news.body | truncatewords:7}}</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        </a>
+{%endfor%}
+
+{% endblock content%}
