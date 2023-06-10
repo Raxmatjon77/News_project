@@ -8,4 +8,13 @@
     <img src="{{news.image.url }}"
          alt="rasm">
     <p>{{news.body | linebreaks}}</p>
+
+    <div class="card-footer text-center" >
+        <a href="{% url 'update_page' news.slug%}">taxrirlash</a>|
+        <a href="{% url 'delete_page' news.slug%}">o'chirish</a>
+
+
+
+
+    </div>
 {% endblock content %}
