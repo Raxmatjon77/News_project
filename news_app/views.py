@@ -1,7 +1,7 @@
-from typing import Any, Dict
 from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView,ListView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView,ListView,UpdateView,DeleteView,CreateView
 
 from news_app.models import News, Category
 from news_app.forms import  ContactForm
@@ -20,18 +20,7 @@ def news_detail(request,news):
     }
     return render(request,"news/news_detail.html",context)
     
-# def HomePageView(request):
-#     categories=Category.objects.all()
-#     local_one=News.published.filter(category__name='Mahalliy').order_by('-publish_time')[:1]
-#     local_news=News.published.all().filter(category__name='Mahalliy').order_by('-publish_time')[1:6]
-#     news_list=News.published.all().order_by('-publish_time')[:10]
-#     context={
-#      'news_list':news_list,
-#       'categories' :categories,
-#         'local_news':local_news,
-#        "local_one":local_one
-#         }
-    # return render(request,"news/index.html",context)
+
 class HomePageView(ListView):
     model=News
     template_name='news/index.html'
@@ -111,4 +100,11 @@ class SportNewsView(ListView):
     def get_queryset(self):
         news=News.published.all().filter(category__name='sport')
         return news
- 
+class NewsUpdateView(UpdateView):
+    model=News
+    fields=('title','image','body','status','category')
+    template_name='crud/news_edit.html'
+class NewsDeleteView(DeleteView):
+    model=News
+    template_name='crud/news_delete.html'
+    success_url=reverse_lazy('home_page')
