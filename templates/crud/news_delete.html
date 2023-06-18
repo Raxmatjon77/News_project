@@ -3,7 +3,7 @@
 {%load static %}
 {% block content %}
  <h2 class="text-center">joriy yangilikni o'chirish</h2>
- <form action="post">{%csrf_token%}
+ <form method="post">{%csrf_token%}
      
      <p>{{news.title}}...  nomli yangilikni haqiqatdan ham o'chirmoqchimisiz</p>
      <button type="submit" class="btn btn-primary" >tasdiqlash</button>
