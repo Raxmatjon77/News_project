@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head> 
@@ -15,9 +16,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> 
-<!-- [if lt IE 9]> -->
 
-<!-- <![endif] -->
 </head>
 <body>
 <div id="preloader">
@@ -34,10 +33,22 @@
               <li><a href="{% url 'home_page' %}">Bosh saxifa</a></li>
               <li><a href="{% url 'about_page' %}">Biz haqimizda</a></li>
               <li><a href=" {% url 'contact_page' %}">Biz bilan bog'lanish</a></li>
+              {%if user.is_authenticated and user.is_superuser %}
+              <li><a href="{% url 'admin_page' %}">Admin saxifasi</a></li>
+              {%endif%}
+             
             </ul>
           </div>
           <div class="header_top_right">
+            {%if user.is_authenticated%}
+            <p ><a href="{% url 'logout' %}" style="color:palegreen">Log out</a></p>
+            <p ><a href="{% url 'user_profile' %}" style="color: yellow;">My profile</a></p>
+            {%else%}
+            <p ><a href="{% url 'login' %}" style="color: yellow;">Ro'yxatdan o'tish</a></p>
+
+            {%endif%}
             <p>{% now 'jS F Y H:i'%}</p>
+
           </div>
         </div>
       </div>
@@ -50,7 +61,7 @@
     </div>
   </header>
   <section id="navArea">
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse " role="navigation" >
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
       </div>
@@ -58,14 +69,7 @@
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li><a href="{% url 'local_news_page'%}">Mahalliy</a></li>
-          <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Samsung</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
-              <li><a href="#">Sympony</a></li>
-            </ul> -->
+          
           </li>
           <li><a href="{% url 'foreign_news_page'%}">Xorijiy</a></li>
           <li><a href="{% url 'sport_news_page'%}">Sport</a></li>
@@ -73,6 +77,26 @@
 
           <li><a href="{% url 'contact_page' %}">Biz bilan aloqa</a></li>
           <!-- <li><a href="{% url '404_page' %}">404 Page</a></li> -->
+         
+              <li><form class="d-flex" role="search" action="{% url 'qidiruv_natijalari' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 50px; line-height: 40px; " name="q">
+                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+              </form></li>
+          <li><form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" class="form-control me-2" style="height: 50px; line-height: 40px;">
+    <select name="language" class="form-control me-2" style="height: 50px;">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}  style="height: 50px;">
+                {{ language.name_local }} ({{ language.code }})
+            </option>
+        {% endfor %}
+    </select>
+    
+</form></li>
+           
         </ul>
       </div>
     </nav>

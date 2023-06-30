@@ -1,5 +1,6 @@
 {% extends 'news/base.html'%}
 {% load static %}
+{% load hitcount_tags%}
 {% block title %} xorij xabarlari {% endblock title %}
 
 {% block content%}
@@ -13,7 +14,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{news.title}}</h5>
-          <p class="card-text"> {{news.body | truncatewords:7}}</p></a>
+          <p class="card-text"> {{news.body | truncatewords:7}} | Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p></a>
         </div>
       </div>
     </div>

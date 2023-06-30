@@ -1,20 +1,45 @@
 {% extends 'news/base.html'%}
 {%load static %}
+{% load hitcount_tags%}
 {% block content %}
 <!DOCTYPE html>
 
     <h1>{{news.title}}</h1>
-    <p> published date: {{ news.publish_time }}</p>
+    <p> published date: {{ news.publish_time }} | Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p>
     <img src="{{news.image.url }}"
          alt="rasm">
     <p>{{news.body | linebreaks}}</p>
+    {%if request.user.is_authenticated and request.user.is_superuser %}
 
     <div class="card-footer text-center" >
-        <a href="{% url 'update_page' news.slug%}">taxrirlash</a>|
-        <a href="{% url 'delete_page' news.slug%}">o'chirish</a>
-
-
-
-
+        <a href="{% url 'update_page' news.slug %}">taxrirlash</a>|
+        <a href="{% url 'news_delete' news.slug %}">o'chirish</a>
     </div>
+     {%endif%}   
+     <h3> {{comment_count}} ta izox : </h3>
+     {%for comment in comments%}
+   
+     <div class="comments " style="padding:10px;">
+        <p class="font-weight-bold ">
+            {{comment.user}}
+            <span class="text-muted font-weight-normal">{{comment.created_time}}</span>
+        </p>
+        <p >{{comment.body|linebreaks}}</p>
+    </div>
+       
+      {%endfor%}
+      {% if user.is_authenticated %}
+      <div class="card mb-4 mt-3">
+        <div class="card-body ">
+            <h3>Izoh qoldirish:</h3>
+            <form method="post">{% csrf_token%}
+               {{comment_form.as_p}}
+                <button type="submit" class="btn btn-primary btn-large">Yuborish</button>
+            </form>
+        </div>
+      </div>
+      {%else%}
+      <h4 class="text-danger">Faqatgina sayt foydalanuvcilari postlarga izox qoldira olishadi !</h4><br>
+      <h4>Izox qoldirish uchun saytga <a href="{% url 'login' %}" style="color: blue;">kiring</a>  yoki <a href="{%url 'user_register'%}" style="color: blue;">royxatdan o'ting.</a> </h4>
+      {%endif%}
 {% endblock content %}

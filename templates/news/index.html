@@ -1,10 +1,12 @@
 {% extends 'news/base.html'%}
+{% load static %}
+{% load hitcount_tags %}
 {% block title %} Bosh saxifa {% endblock title %}
 
 
 {% block content %}
 
-{% load static %}
+
   <section id="sliderSection">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
@@ -13,7 +15,7 @@
           <div class="single_iteam"> <a href="{{news.get_absolute_url}}"> <img src="{{ news.image.url }}" alt=""></a>
             <div class="slider_article">
               <h2><a class="slider_tittle" href="{{news.get_absolute_url}}"> {{ news.title | truncatewords:5}}</a></h2>
-               <p>{{ news.title}}</p>
+               <p>{{ news.title}} | Views <i class="fa fa-eye"></i> : {%get_hit_count for news%} </p>
             </div>
           </div>
           {% endfor %}
@@ -28,7 +30,8 @@
               {% for news in news_list%}
               <li>
                 <div class="media"> <a href="{{news.get_absolute_url}}" class="media-left"> <img alt="" src="{{news.image.url}}"> </a>
-                  <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a> </div>
+                  <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a>
+                  <p>Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p> </div>
                 </div>
               </li>
               {% endfor %}
@@ -54,7 +57,7 @@
                 <li>
                   <figure class="bsbig_fig"> <a href="{{mahalliy.get_absolute_url}}" class="featured_img"> <img alt="" src="{{mahalliy.image.url}}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{mahalliy.get_absolute_url}}">{{mahalliy.title}}</a> </figcaption>
-                    <p>{{ mahalliy.title|truncatewords:10}}</p>
+                    <p>{{ mahalliy.title|truncatewords:10}} |  Views <i class="fa fa-eye"></i> : {%get_hit_count for mahalliy %} </p>
                   </figure>
                 </li>
                 {%endif%}
@@ -68,7 +71,8 @@
                   {% if forloop.counter > 1 %}
                 <li>
                   <div class="media wow fadeInDown"> <a href="{{mahalliy.get_absolute_url}} " class="media-left"> <img alt="" src="{{mahalliy.image.url}}"> </a>
-                    <div class="media-body"> <a href="{{mahalliy.get_absolute_url}} " class="catg_title"> {{ mahalliy.title}}</a> </div>
+                    <div class="media-body"> <a href="{{mahalliy.get_absolute_url}} " class="catg_title"> {{ mahalliy.title}}</a>
+                    <p> Views <i class="fa fa-eye"></i> : {%get_hit_count for mahalliy%}</p> </div>
                   </div>
                 </li>
                 {%endif%}
@@ -88,7 +92,7 @@
 
                     <figure class="bsbig_fig"> <a href="{{news.get_absolute_url}}" class="featured_img"> <img alt="" src="{{news.image.url}}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{news.get_absolute_url}}">{{news.title}}</a> </figcaption>
-                  <p>{{news.title| truncatewords:7}}</p>
+                  <p>{{news.title| truncatewords:7}} |  Views <i class="fa fa-eye"></i> : {%get_hit_count for news%} </p>
                     </figure>
                   </li>
                   {%endif%}
@@ -100,7 +104,8 @@
 
                   <li>
                     <div class="media wow fadeInDown"> <a href="{{news.get_absolute_url}}" class="media-left"> <img alt="" src="{{news.image.url}}"> </a>
-                      <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a> </div>
+                      <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a> 
+                      <p> Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p></div>
                     </div>
                   </li>
                       {%endif%}
@@ -119,7 +124,7 @@
                   <li>
                     <figure class="bsbig_fig"> <a href="{{news.get_absolute_url}}" class="featured_img"> <img alt="" src="{{news.image.url}}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{news.get_absolute_url}}">{{news.title}}</a> </figcaption>
-                  <p>{{news.title| truncatewords:7}}</p>
+                  <p>{{news.title| truncatewords:7}} |  Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p>
                     </figure>
                   </li>
                   {%endif%}
@@ -132,7 +137,8 @@
 
                   <li>
                     <div class="media wow fadeInDown"> <a href="{{news.get_absolute_url}}" class="media-left"> <img alt="" src="{{news.image.url}}"> </a>
-                      <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a> </div>
+                      <div class="media-body"> <a href="{{news.get_absolute_url}}" class="catg_title">{{news.title}}</a> 
+                      <p>  Views <i class="fa fa-eye"></i> : {%get_hit_count for news%} </p></div>
                     </div>
                   </li>
                       {%endif%}
@@ -187,7 +193,7 @@
                   <li>
                     <figure class="bsbig_fig"> <a href="{{news.get_absolute_url}}" class="featured_img"> <img alt="" src="{{news.image.url}}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{news.get_absolute_url}}">{{news.title}}</a> </figcaption>
-                  <p>{{news.title| truncatewords:7}}</p>
+                  <p>{{news.title| truncatewords:7}} |  Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p>
                     </figure>
                   </li>
                   {%endif%}
@@ -202,7 +208,8 @@
 
                   <li>
                     <div class="media wow fadeInDown"> <a href="{{news.get_absolute_url}}" class="media-left"> <img alt="" src="{{news.image.url}}"> </a>
-                      <div class="media-body"> <a href="{{news.get_absolute_url}} " class="catg_title">{{news.title}}</a> </div>
+                      <div class="media-body"> <a href="{{news.get_absolute_url}} " class="catg_title">{{news.title}}</a> 
+                      <p> Views <i class="fa fa-eye"></i> : {%get_hit_count for news%}</p></div>
                     </div>
                   </li>
                       {%endif%}
