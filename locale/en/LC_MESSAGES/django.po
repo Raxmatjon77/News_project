@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-02 05:37+0500\n"
+"POT-Creation-Date: 2023-07-02 22:22+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\news_project\settings.py:123
+#: .\news_project\settings.py:129
 msgid "Uzbek"
 msgstr "Uzbek"
 
-#: .\news_project\settings.py:124
+#: .\news_project\settings.py:130
 msgid "English"
 msgstr "English"
 
-#: .\news_project\settings.py:125
+#: .\news_project\settings.py:131
 msgid "Russian"
 msgstr "Russian"
 
 #: .\templates\news\base.html:33
-#, fuzzy
-#| msgid " Bosh saxifa "
 msgid "Bosh saxifa"
 msgstr "Home page"
 
@@ -50,8 +48,6 @@ msgstr "Admin page"
 
 #: .\templates\news\base.html:86 .\templates\news\base.html:151
 #: .\templates\news\index.html:53
-#, fuzzy
-#| msgid "Mahalliy "
 msgid "Mahalliy"
 msgstr "Locale"
 
@@ -75,8 +71,7 @@ msgid "Biz bilan aloqa"
 msgstr "Contact"
 
 #: .\templates\news\base.html:109
-#, fuzzy
-#| msgid "So'ngi xabarlar"
+
 msgid "So'ngi yangiliklar"
 msgstr "Latest news"
 

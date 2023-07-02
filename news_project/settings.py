@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from pickle import TRUE
 
 from decouple import config
 
@@ -26,9 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['127.0.0.1']
-
+ALLOWED_HOSTS = ['*']
+DEBUG=True
 
 # Application definition
 
@@ -122,7 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY ="django-insecure-xpfse^)(1v228=18ia6%lcj$4#y7v%(xhcc@2ktr%*#ty6j+z%"
+
 LANGUAGE_CODE = 'uz-uz'
 LANGUAGES=[
     ('uz',_('Uzbek')),

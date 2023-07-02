@@ -24,7 +24,46 @@
 </div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
+
+  <div class="container text-center">
+  <div class="row bg-secondary">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 bg-secondary" style="padding-left: 0px">
+      <form  role="search" action="{% url 'qidiruv_natijalari' %}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+      </form>
+                </div>
+      <div class="col-lg-3 col-md-3"></div>
+      <div class="col-lg-3 col-md-3"></div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" style="padding-right: 0px">
+        <form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
+
+          <div class="row">
+             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+        <input name="next" type="hidden" value="{{ redirect_to }}" class="form-control me-2" >
+        <select name="language" class="form-control me-2" style="display:inline;">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} >
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+
+                    {% endfor %}
+                </select>
+          </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+              <input type="submit" value="Go" style="display: nline;">
+              </div>
+         </div>
+            </form>
+              </div>
+            </div>
+        </div>
+
+
   <header id="header">
+
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_top">
@@ -36,22 +75,7 @@
               {%if user.is_authenticated and user.is_superuser %}
               <li><a href="{% url 'admin_page' %}">{%blocktrans%}Admin saxifasi{%endblocktrans%}</a></li>
               {%endif%}
-              <li><form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}" class="form-control me-2" >
-                <select name="language" class="form-control me-2" style="display:inline;">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} >
-                            {{ language.name_local }} ({{ language.code }})
-                        </option>
-                    
-                    {% endfor %}
-                </select>
-              <input type="submit" value="Go" style="display: inline;">
-                
-            </form></li>
+
             </ul>
           </div>
           <div class="header_top_right">
@@ -93,10 +117,7 @@
           <li><a href="{% url 'contact_page' %}">{%blocktrans%}Biz bilan aloqa{%endblocktrans%}</a></li>
           <!-- <li><a href="{% url '404_page' %}">404 Page</a></li> -->
          
-              <li><form class="d-flex" role="search" action="{% url 'qidiruv_natijalari' %}">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 50px; line-height: 40px; " name="q">
-                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-              </form></li>
+              <li></li>
           
            
         </ul>
