@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-02 05:37+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news_project\settings.py:123
+msgid "Uzbek"
+msgstr "узбекский"
+
+#: .\news_project\settings.py:124
+msgid "English"
+msgstr "Английский"
+
+#: .\news_project\settings.py:125
+msgid "Russian"
+msgstr "русский"
+
+#: .\templates\news\base.html:33
+#, fuzzy
+#| msgid " Bosh saxifa "
+msgid "Bosh saxifa"
+msgstr "Домашняя страница"
+
+#: .\templates\news\base.html:34
+msgid "Biz haqimizda"
+msgstr ""
+
+#: .\templates\news\base.html:35
+msgid "Biz bilan bog'lanish"
+msgstr ""
+
+#: .\templates\news\base.html:37
+msgid "Admin saxifasi"
+msgstr ""
+
+#: .\templates\news\base.html:86 .\templates\news\base.html:151
+#: .\templates\news\index.html:53
+#, fuzzy
+#| msgid "Mahalliy "
+msgid "Mahalliy"
+msgstr "Местный"
+
+#: .\templates\news\base.html:89 .\templates\news\base.html:150
+msgid "Xorijiy"
+msgstr "Иностранные"
+
+#: .\templates\news\base.html:90 .\templates\news\base.html:149
+#: .\templates\news\index.html:188
+msgid "Sport"
+msgstr "Cпорт"
+
+#: .\templates\news\base.html:91
+#, fuzzy
+#| msgid "Texnologiyalar"
+msgid "Texnologiya"
+msgstr "Технологии"
+
+#: .\templates\news\base.html:93
+msgid "Biz bilan aloqa"
+msgstr ""
+
+#: .\templates\news\base.html:109
+#, fuzzy
+#| msgid "So'ngi xabarlar"
+msgid "So'ngi yangiliklar"
+msgstr "Последние сообщения"
+
+#: .\templates\news\base.html:153 .\templates\news\index.html:120
+msgid "Texnologiyalar"
+msgstr "Технологии"
+
+#: .\templates\news\base.html:154 .\templates\news\index.html:153
+msgid "Rasmlar"
+msgstr "Картинки"
+
+#: .\templates\news\index.html:5
+msgid " Bosh saxifa "
+msgstr "Домашняя страница"
+
+#: .\templates\news\index.html:27
+msgid "So'ngi xabarlar"
+msgstr "Последние сообщения"
+
+#: .\templates\news\index.html:88
+msgid "Xorij xabarlari"
+msgstr "Иностранные сообщения"
+
+#: .\templates\news\index.html:227
+msgid "Ommabop postlar"
+msgstr "Популярные посты"
+
+#: .\templates\news\index.html:297
+msgid "Homiylar"
+msgstr "Спонсоры"

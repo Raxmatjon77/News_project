@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.text import slugify
 from django.views.generic import TemplateView,ListView,UpdateView,DeleteView,CreateView,View
 from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
@@ -74,10 +75,10 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context['categories']=Category.objects.all()
-        context['sport_xabarlari']=News.published.all().filter(category__name='sport').order_by('-publish_time')[0:5]
-        context['xorij_xabarlari']=News.published.all().filter(category__name='xorijiy').order_by('-publish_time')[0:5]
-        context['texnologiya_xabarlar']=News.published.all().filter(category__name='texnologiya').order_by('-publish_time')[0:5]
-        context['mahalliy_xabarlar']=News.published.all().filter(category__name='Mahalliy').order_by('-publish_time')[0:5]
+        context['sport_xabarlari']=News.published.all().filter(category__id=7).order_by('-publish_time')[0:5]
+        context['xorij_xabarlari']=News.published.all().filter(category__id=6).order_by('-publish_time')[0:5]
+        context['texnologiya_xabarlar']=News.published.all().filter(category__id=8).order_by('-publish_time')[0:5]
+        context['mahalliy_xabarlar']=News.published.all().filter(category__id=5).order_by('-publish_time')[0:5]
 
         context['news_list']=News.published.all().order_by('-publish_time')[:5]
         return context
@@ -150,6 +151,13 @@ class NewsUpdateView(OnlyLoggedSuperUser,UpdateView):
     model=News
     fields=('title','image','body','status','category')
     template_name='crud/news_edit.html'
+
+    def form_valid(self,form):
+        self.News = form.save(commit=False)
+        if not self.News.slug:
+            self.News.slug = slugify(self.News.title)
+        self.News.save()
+        return super().form_valid(form)
 class NewsDeleteView(OnlyLoggedSuperUser,DeleteView):
     model=News
     template_name='crud/news_delete.html'
@@ -158,6 +166,12 @@ class NewsCreateView(OnlyLoggedSuperUser,CreateView):
     model=News
     fields=('title','slug','image','body','status','category',)
     template_name='crud/news_create.html'
+    def form_valid(self,form):
+        self.News=form.save(commit=False)
+        if not self.News.slug:
+            self.News.slug=slugify(self.News.title)
+        self.News.save()
+        return super().form_valid(form)
 @login_required
 @user_passes_test(lambda u:u.is_superuser)
 

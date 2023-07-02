@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,11 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xpfse^)(1v228=18ia6%lcj$4#y7v%(xhcc@2ktr%*#ty6j+z%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
+DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = []
 
 
@@ -39,11 +40,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news_app',
     'accounts',
-    'hitcount'
+    'hitcount',
+    'modeltranslation',
+    'whitenoise.runserver_nostatic',
+  
+    
+
 ]
+MODELTRANSLATION_DEFAULT_LANGUAGE='uz'
+USE_I18N = True
+LOCALE_PATHS=BASE_DIR,'locale'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleaware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",
     'django.middleware.common.CommonMiddleware',
@@ -110,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 
+SECRET_KEY = config('SECRET_KEY')
 LANGUAGE_CODE = 'uz-uz'
 LANGUAGES=[
     ('uz',_('Uzbek')),
@@ -145,3 +157,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL='home_page'
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 LOGIN_URL='login'
+STATICFILES_STORAGE='whitenoise.sorage.CompressedManifestStaticFilesStorage'

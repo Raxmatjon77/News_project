@@ -62,7 +62,8 @@ def user_register(request):
                 'new_user':new_user
                 
             }
-            return render(request,'account/register_done.html',context)   
+            return redirect('login')
+            # return render(request,'account/register_done.html',context)   
 
     else:
         user_form=UserRegistrationForm()

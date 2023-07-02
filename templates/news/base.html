@@ -30,13 +30,28 @@
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="{% url 'home_page' %}">Bosh saxifa</a></li>
-              <li><a href="{% url 'about_page' %}">Biz haqimizda</a></li>
-              <li><a href=" {% url 'contact_page' %}">Biz bilan bog'lanish</a></li>
+              <li><a href="{% url 'home_page' %}">{%blocktrans%}Bosh saxifa{%endblocktrans%}</a></li>
+              <li><a href="{% url 'about_page' %}">{%blocktrans%}Biz haqimizda{%endblocktrans%}</a></li>
+              <li><a href=" {% url 'contact_page' %}">{%blocktrans%}Biz bilan bog'lanish{%endblocktrans%}</a></li>
               {%if user.is_authenticated and user.is_superuser %}
-              <li><a href="{% url 'admin_page' %}">Admin saxifasi</a></li>
+              <li><a href="{% url 'admin_page' %}">{%blocktrans%}Admin saxifasi{%endblocktrans%}</a></li>
               {%endif%}
-             
+              <li><form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}" class="form-control me-2" >
+                <select name="language" class="form-control me-2" style="display:inline;">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} >
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    
+                    {% endfor %}
+                </select>
+              <input type="submit" value="Go" style="display: inline;">
+                
+            </form></li>
             </ul>
           </div>
           <div class="header_top_right">
@@ -68,34 +83,21 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="{% url 'local_news_page'%}">Mahalliy</a></li>
+          <li><a href="{% url 'local_news_page'%}">{%blocktrans%}Mahalliy{%endblocktrans%}</a></li>
           
           </li>
-          <li><a href="{% url 'foreign_news_page'%}">Xorijiy</a></li>
-          <li><a href="{% url 'sport_news_page'%}">Sport</a></li>
-          <li><a href="{% url 'technology_news_page'%}">Texnologiya</a></li>
+          <li><a href="{% url 'foreign_news_page'%}">{%blocktrans%}Xorijiy{%endblocktrans%}</a></li>
+          <li><a href="{% url 'sport_news_page'%}">{%blocktrans%}Sport{%endblocktrans%}</a></li>
+          <li><a href="{% url 'technology_news_page'%}">{%blocktrans%}Texnologiya{%endblocktrans%}</a></li>
 
-          <li><a href="{% url 'contact_page' %}">Biz bilan aloqa</a></li>
+          <li><a href="{% url 'contact_page' %}">{%blocktrans%}Biz bilan aloqa{%endblocktrans%}</a></li>
           <!-- <li><a href="{% url '404_page' %}">404 Page</a></li> -->
          
               <li><form class="d-flex" role="search" action="{% url 'qidiruv_natijalari' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 50px; line-height: 40px; " name="q">
                 <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
               </form></li>
-          <li><form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
-    <input name="next" type="hidden" value="{{ redirect_to }}" class="form-control me-2" style="height: 50px; line-height: 40px;">
-    <select name="language" class="form-control me-2" style="height: 50px;">
-        {% get_current_language as LANGUAGE_CODE %}
-        {% get_available_languages as LANGUAGES %}
-        {% get_language_info_list for LANGUAGES as languages %}
-        {% for language in languages %}
-            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}  style="height: 50px;">
-                {{ language.name_local }} ({{ language.code }})
-            </option>
-        {% endfor %}
-    </select>
-    
-</form></li>
+          
            
         </ul>
       </div>
@@ -104,7 +106,7 @@
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea"> <span>So'ngi yangiliklar</span>
+        <div class="latest_newsarea"> <span>{%blocktrans%}So'ngi yangiliklar{%endblocktrans%}</span>
           <ul id="ticker01" class="news_sticker">
             {% for news in latest_news %}
             <li><a href="{{news.get_absolute_url}}"><img src="{{news.image.url}}" alt="">{{news.title}}</a></li>
@@ -144,12 +146,12 @@
             <h2>Teglar</h2>
             <ul class="tag_nav">
            
-              <li><a href="#">Sport</a></li>
-              <li><a href="#">Xorijiy</a></li>
-              <li><a href="#">Mahalliy</a></li>
+              <li><a href="#">{%blocktrans%}Sport{%endblocktrans%}</a></li>
+              <li><a href="#">{%blocktrans%}Xorijiy{%endblocktrans%}</a></li>
+              <li><a href="#">{%blocktrans%}Mahalliy{%endblocktrans%}</a></li>
               
-              <li><a href="#">Texnologiyalar</a></li>
-              <li><a href="#">Rasmlar</a></li>
+              <li><a href="#">{%blocktrans%}Texnologiyalar{%endblocktrans%}</a></li>
+              <li><a href="#">{%blocktrans%}Rasmlar{%endblocktrans%}</a></li>
             </ul>
           </div>
         </div>
