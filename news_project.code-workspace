@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"path": "C:/Users/user/django_p/news_project"
+	},
+	{
+		"path": "."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "pythonProject",
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
+  }
+}
