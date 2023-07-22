@@ -137,7 +137,7 @@ USE_TZ = True
 # STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 MEDIA_URL='media/'
-NEDIA_ROOT=BASE_DIR/'media/'
+MEDIA_ROOT=BASE_DIR/'media/'
 STATIC_ROOT=BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[BASE_DIR/'static']
@@ -148,8 +148,8 @@ STATICFILES_FINDERS=[
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-MEDIA_URL='media/'
-NEDIA_ROOT=BASE_DIR/'media/'
+#MEDIA_URL='media/'
+#NEDIA_ROOT=BASE_DIR/'media/'
 # MEDIA_ROOT='/home/host3649/newsnow.uz/django/media'
 
 # Default primary key field type
