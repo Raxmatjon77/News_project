@@ -122,7 +122,7 @@ LANGUAGES=[
     ('ru',_("Russian")),
 ]
 
-TIME_ZONE = 'Asia/tashkent'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -132,21 +132,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 # STATICFILES_DIRS=[BASE_DIR/'static']
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+# STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
-# STATIC_ROOT=BASE_DIR/'staticfiles'
+MEDIA_URL='media/'
+NEDIA_ROOT=BASE_DIR/'media/'
+STATIC_ROOT=BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/host3649/newsnow.uz/django/staticfiles'
-STATICFILES_DIRS = ('/home/host3649/newsnow.uz/django/static', )
+STATICFILES_DIRS=[BASE_DIR/'static']
+# STATIC_ROOT = '/home/host3649/newsnow.uz/django/staticfiles'
+# STATICFILES_DIRS = ('/home/host3649/newsnow.uz/django/static', )
 STATICFILES_FINDERS=[
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 MEDIA_URL='media/'
-MEDIA_ROOT='/home/host3649/newsnow.uz/django/media'
+NEDIA_ROOT=BASE_DIR/'media/'
+# MEDIA_ROOT='/home/host3649/newsnow.uz/django/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
