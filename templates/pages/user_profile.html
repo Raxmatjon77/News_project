@@ -7,9 +7,9 @@
 <h6><a href="{% url 'logout'%}" style="color: red;">LOG OUT</a></h6>
 <h4 style="color: blue;"> Sizning ma'lumotlaringiz :</h4>
 <div class="container" >
-    <img src="{{profile.photo.url}}" alt="" width="30%">
-    <h4>Sizning tug'ulgan kuningiz :{{profile.data_of_birth}}</h4>
-    <label style="padding:10px;">Username:<label for=""><input type="text" value="{{user.username}}" readonly></label><br>
+
+
+    <label style="padding:10px;">Username:<label><input type="text" value="{{user.username}}" readonly></label><br>
     <label style="padding:10px;">email:</label><input type="text" value="{{user.email}}" readonly><br>
     <label style="padding:10px;" >Ismingiz:</label><input type="text" value="{{user.first_name}}"readonly><br>
     <label style="padding:10px;">Familyangiz:</label><input type="text" value="{{user.last_name}}" readonly></div>

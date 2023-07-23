@@ -7,7 +7,7 @@
 <p> Siz ma'lumotlaringizni quyidagi forma orqali o'zgartirishingiz mumkin :</p>
 <form method="post" enctype="multipart/form-data">{% csrf_token%}
     {{user_form.as_p}}
-    {{profile_form.as_p}}
+<!--    {{profile_form.as_p}}-->
     <button type="submit">Saqlash</button>
 </form>
 {% endblock content%}

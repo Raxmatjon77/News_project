@@ -53,6 +53,7 @@ def news_detail(request,news):
             new_comment.user=request.user
             # commentni DB ga saqlaymiz
             new_comment.save()
+            comment_count=comment_count+1
             comment_form=CommentForm()
     else:
         comment_form=CommentForm()
@@ -79,9 +80,10 @@ class HomePageView(ListView):
         context['xorij_xabarlari']=News.published.all().filter(category__id=6).order_by('-publish_time')[0:5]
         context['texnologiya_xabarlar']=News.published.all().filter(category__id=8).order_by('-publish_time')[0:5]
         context['mahalliy_xabarlar']=News.published.all().filter(category__id=5).order_by('-publish_time')[0:5]
-
+        context['popular_posts']=News.published.all()[5:10]
         context['news_list']=News.published.all().order_by('-publish_time')[:5]
         return context
+
 
 
 
@@ -94,10 +96,13 @@ def aboutPageView(request):
     return  render(request,'news/about.html')
 #
 class contactPageView(TemplateView):
+
     template_name = 'news/contact.html'
     def get(self,request,*args,**kwargs):
+        popular_posts=News.published.all()[5:10]
         form=ContactForm()
         context={
+            'popular_posts':popular_posts,
             'form':form
         }
         return render(request,'news/contact.html',context)
@@ -117,7 +122,7 @@ class LocalNewsView(ListView):
     template_name='news/mahalliy.html' 
     context_object_name='mahalliy_yangiliklar' 
     def get_queryset(self):
-        news=News.published.all().filter(category__name='Mahalliy')
+        news=News.published.all().filter(category__id=5)
         return news
 
 class ForeignNewsView(ListView):
@@ -125,7 +130,7 @@ class ForeignNewsView(ListView):
     template_name='news/xorij.html' 
     context_object_name='xorij_yangiliklari' 
     def get_queryset(self):
-        news=News.published.all().filter(category__name='xorijiy')
+        news=News.published.all().filter(category__id=6)
         return news
 
     
@@ -135,7 +140,7 @@ class TechnologyNewsView(ListView):
     template_name='news/texnologiya.html' 
     context_object_name='texno_yangiliklar' 
     def get_queryset(self):
-        news=News.published.all().filter(category__name='texnologiya')
+        news=News.published.all().filter(category__id=8)
         return news
 
 
@@ -145,7 +150,7 @@ class SportNewsView(ListView):
     template_name='news/sport.html' 
     context_object_name='sport_yangiliklar'   
     def get_queryset(self):
-        news=News.published.all().filter(category__name='sport')
+        news=News.published.all().filter(category__id=7)
         return news
 class NewsUpdateView(OnlyLoggedSuperUser,UpdateView):
     model=News
@@ -187,6 +192,21 @@ class SearchresultList(ListView):
     context_object_name='news_list'
     def get_queryset(self):
         query=self.request.GET.get('q')
-        return News.objects.filter( Q(title__icontains=query) | Q(body__icontains=query))
+        return News.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
     #
+from django.db.models import Count
 
+def get_popular_posts(request):
+  """
+  Returns a list of the most popular posts, based on the number of hunts.
+  """
+  posts = News.objects.all()
+  return posts[6:10]
+
+
+def index(request):
+  popular_posts = get_popular_posts(request)
+  context = {
+    'popular_posts': popular_posts,
+  }
+  return render(request, 'news/index.html', context)

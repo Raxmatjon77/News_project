@@ -44,12 +44,15 @@ def dashboard_view(request):
     user=request.user
 
     profile =Profile.objects.get(user=user)
-    print(user)
+
     context ={
         'user': user,
         'profile': profile
     }
     return render(request, 'pages/user_profile.html', context)
+class ProfileView(LoginRequiredMixin,View):
+    def get(self,request):
+        return render(request,'pages/user_profile.html',{'user':request.user})
 def user_register(request):
     if request.method=='POST':
         user_form=UserRegistrationForm(request.POST)
